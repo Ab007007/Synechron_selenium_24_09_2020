@@ -1,7 +1,3 @@
 .metadata/
-actitimeSelenium/bin
+bin
 ~$Maven.docx
-actitime/
-actitimeSelenium/.classpath
-actitimeSelenium/.project
-actitimeSelenium/.settings/org.eclipse.jdt.core.prefs
