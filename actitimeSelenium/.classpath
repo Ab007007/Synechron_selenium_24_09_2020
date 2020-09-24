@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="D:/synechron_ws_24_09/actitimeSelenium/lib/libs/guava-25.0-jre.jar"/>
 	<classpathentry kind="lib" path="D:/synechron_ws_24_09/actitimeSelenium/lib/libs/okhttp-3.11.0.jar"/>
 	<classpathentry kind="lib" path="D:/synechron_ws_24_09/actitimeSelenium/lib/libs/okio-1.14.0.jar"/>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
