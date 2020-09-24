@@ -30,31 +30,31 @@ public class WebDriverUtils {
 			break;
 
 		case "name":
-			ele = driver.findElement(By.id(value));
+			ele = driver.findElement(By.name(value));
 			break;
 
 		case "classname":
-			ele = driver.findElement(By.id(value));
+			ele = driver.findElement(By.className(value));
 			break;
 
 		case "tagname":
-			ele = driver.findElement(By.id(value));
+			ele = driver.findElement(By.tagName(value));
 			break;
 
 		case "linktext":
-			ele = driver.findElement(By.id(value));
+			ele = driver.findElement(By.linkText(value));
 			break;
 
 		case "partiallinktext":
-			ele = driver.findElement(By.id(value));
+			ele = driver.findElement(By.partialLinkText(value));
 			break;
 
 		case "css":
-			ele = driver.findElement(By.id(value));
+			ele = driver.findElement(By.cssSelector(value));
 			break;
 
 		case "xpath":
-			ele = driver.findElement(By.id(value));
+			ele = driver.findElement(By.xpath(value));
 			break;
 
 		default:

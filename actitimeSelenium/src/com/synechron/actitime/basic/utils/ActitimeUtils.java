@@ -13,7 +13,14 @@ public class ActitimeUtils extends WebDriverUtils
 	
 	public static void launch(String url)
 	{
+		
+		System.out.println(" Launching the application " + url);
+		driver.get(url);
 		validateTitle("actiTIME - Login");
+	}
+	public static void launchApp(String url)
+	{
+		
 		System.out.println(" Launching the application " + url);
 		driver.get(url);
 	}
