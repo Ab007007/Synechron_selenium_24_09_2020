@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
@@ -66,6 +67,19 @@ public class WebDriverUtils {
 			}
 			break;
 
+		case "edge":
+			EdgeOptions eoptions = new EdgeOptions();
+			try {
+				eoptions.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+				eoptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+				eoptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				eoptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "disable-infobars"); //addArguments();
+				driver = new RemoteWebDriver(new URL(url), eoptions);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		default:
 			break;
 		}

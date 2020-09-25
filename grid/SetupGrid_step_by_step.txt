@@ -1,5 +1,6 @@
 1. go to seleniumhq.org
-2. download the latest Selenium Standalone Server jar file (eg.3.13.0) D:\QSP\MorningBatch\Eclipse_WS\SeleniumPractice\grid
+2. download the latest Selenium Standalone Server jar file (eg.3.13.0) 
+	cd d:\synechron_ws_24_09\grid>
 3. create hub
 	-open command prompt , go to the diretory where latest jar file is saved and execute the below code
 	cd D:\Intellipaat\09Dec_Batch6\JavaSeleniumPractice\grid
