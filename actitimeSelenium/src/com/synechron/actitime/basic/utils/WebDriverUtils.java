@@ -1,13 +1,21 @@
 package com.synechron.actitime.basic.utils;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -25,43 +33,77 @@ public class WebDriverUtils {
 
 	}
 
+	public static WebDriver getRemoteDriver(String client_url, String type) {
+		String url = client_url + "/wd/hub";
+
+		switch (type) {
+		case "chrome":
+			ChromeOptions options = new ChromeOptions();
+			try {
+				options.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+				options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+				options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				options.addArguments("disable-infobars");
+				driver = new RemoteWebDriver(new URL(url), options);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			break;
+
+		case "ff":
+			FirefoxOptions foptions = new FirefoxOptions();
+			try {
+				foptions.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+				foptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+				foptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				foptions.addArguments("disable-infobars");
+				driver = new RemoteWebDriver(new URL(url), foptions);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
+		default:
+			break;
+		}
+		return driver;
+
+	}
+
 	public static WebDriver getDriver(String type) {
 		System.out.println("Creatiing Web Driver" + type);
 		switch (type) {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 			driver = new ChromeDriver();
-			
+
 			break;
 		case "ff":
 			System.setProperty("webdriver.gecko.driver", "drivers/geckodriver.exe");
 			driver = new FirefoxDriver();
-			
+
 			break;
 
 		case "edge":
 			System.setProperty("webdriver.edge.driver", "drivers/msedgedriver.exe");
 			driver = new EdgeDriver();
-			
+
 			break;
 
 		default:
 			System.out.println("Please contact framework developers " + type);
 			break;
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		return driver;
 
 	}
 
-	
-	
-	
-	
-	
-	
 	public static WebElement getElement(String identifier, String value) {
 		WebElement ele = null;
 		System.out.println("---> Finding the element using " + identifier + " and " + value);
@@ -119,14 +161,12 @@ public class WebDriverUtils {
 		System.out.println("-> Clicking on Webelement completed");
 
 	}
-	
-	
-	
+
 	public static void waitAndclick(String identifier, String value) {
 		System.out.println("-> Wait Clicking on Webelement");
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement ele = wait.until(ExpectedConditions.visibilityOf(getElement(identifier, value)));
-		
+
 		if (ele.isDisplayed() && ele.isEnabled()) {
 			System.out.println("Element is displayed and enabled");
 			ele.click();
@@ -145,7 +185,6 @@ public class WebDriverUtils {
 		}
 	}
 
-	
 	public static String getElementText(String identifier, String value) {
 		System.out.println("getElementText on Webelement");
 		String texttoReturn = null;
@@ -155,26 +194,22 @@ public class WebDriverUtils {
 			System.out.println("Element is displayed and enabled");
 			texttoReturn = ele.getText();
 		}
-		
+
 		return texttoReturn;
-		
+
 	}
 
-	public static void selectCheckBox(String identifier, String value)
-	{
+	public static void selectCheckBox(String identifier, String value) {
 		System.out.println("Clicking on Check box Webelement");
 
 		WebElement ele = getElement(identifier, value);
-		
-		if(ele.isSelected()) {
+
+		if (ele.isSelected()) {
 			System.out.println("Checkbox is already selected not performing click");
-		}
-		else {
+		} else {
 			ele.click();
 		}
 
-		
 	}
-	
-	
+
 }
