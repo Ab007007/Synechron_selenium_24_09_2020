@@ -13,7 +13,7 @@ public class MouseMovementDemo {
 	public static void main(String[] args) throws InterruptedException {
 
 		WebDriver driver = ActitimeUtils.getDriver();
-		ActitimeUtils.launchApp("https://www.flipkart.com/");
+		ActitimeUtils.launch("https://www.flipkart.com/");
 		
 		WebDriverWait wait =  new WebDriverWait(driver, 30);
 		WebElement ele = wait.until(ExpectedConditions.visibilityOf(ActitimeUtils.getElement("xpath", "//button[@class='_2AkmmA _29YdH8']")));
