@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebDriverUtils {
 
@@ -23,7 +25,7 @@ public class WebDriverUtils {
 
 	public static WebElement getElement(String identifier, String value) {
 		WebElement ele = null;
-		System.out.println("Finding the element using " + identifier + " and " + value);
+		System.out.println("---> Finding the element using " + identifier + " and " + value);
 		switch (identifier.toLowerCase()) {
 		case "id":
 			ele = driver.findElement(By.id(value));
@@ -67,7 +69,7 @@ public class WebDriverUtils {
 	}
 
 	public static void click(String identifier, String value) {
-		System.out.println("Clicking on Webelement");
+		System.out.println("-> Clicking on Webelement");
 
 		WebElement ele = getElement(identifier, value);
 
@@ -75,6 +77,22 @@ public class WebDriverUtils {
 			System.out.println("Element is displayed and enabled");
 			ele.click();
 		}
+		System.out.println("-> Clicking on Webelement completed");
+
+	}
+	
+	
+	
+	public static void waitAndclick(String identifier, String value) {
+		System.out.println("-> Wait Clicking on Webelement");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebElement ele = wait.until(ExpectedConditions.visibilityOf(getElement(identifier, value)));
+		
+		if (ele.isDisplayed() && ele.isEnabled()) {
+			System.out.println("Element is displayed and enabled");
+			ele.click();
+		}
+		System.out.println("-> Clicking on Webelement completed");
 	}
 
 	public static void type(String identifier, String value, String text) {

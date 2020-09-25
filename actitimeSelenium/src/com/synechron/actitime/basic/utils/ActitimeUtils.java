@@ -1,6 +1,9 @@
 package com.synechron.actitime.basic.utils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class ActitimeUtils extends WebDriverUtils
@@ -81,5 +84,19 @@ public class ActitimeUtils extends WebDriverUtils
 		
 	}
 	
+	public static void createCustomer(String cn, String cd) {
+		
+		type("id", "customerLightBox_nameField", cn);
+		type("id", "customerLightBox_descriptionField", cd);
+		click("id", "customerLightBox_commitBtn");
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebElement success_msg = wait.until(ExpectedConditions.visibilityOf(getElement("xpath", "//div[@class='toast']")));
+		System.out.println("---- Element is visible ---> " + success_msg.getText());
+		
+		wait.until(ExpectedConditions.invisibilityOf(getElement("xpath", "//div[@class='toast']")));
+
+		System.out.println("#### success messge disappeared ####");
+	}
 	
 }
