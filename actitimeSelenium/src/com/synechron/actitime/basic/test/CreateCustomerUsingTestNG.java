@@ -24,7 +24,7 @@ public class CreateCustomerUsingTestNG {
 	public void createCustomerTest() {
 		ActitimeUtils.gotoTasksPage();
 		ActitimeUtils.clickOnNewCustomer();
-		ActitimeUtils.createCustomer("Syn-Customer_25_09_4", "Syn-Customer_25_09_4_Desc");
+		ActitimeUtils.createCustomer("Syn-Customer_25_09_14", "Syn-Customer_25_09_14_Desc");
 	}
 	
 	@AfterTest

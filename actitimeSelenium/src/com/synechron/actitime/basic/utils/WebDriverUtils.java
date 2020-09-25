@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,6 +25,43 @@ public class WebDriverUtils {
 
 	}
 
+	public static WebDriver getDriver(String type) {
+		System.out.println("Creatiing Web Driver" + type);
+		switch (type) {
+		case "chrome":
+			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+			driver = new ChromeDriver();
+			
+			break;
+		case "ff":
+			System.setProperty("webdriver.gecko.driver", "drivers/geckodriver.exe");
+			driver = new FirefoxDriver();
+			
+			break;
+
+		case "edge":
+			System.setProperty("webdriver.edge.driver", "drivers/msedgedriver.exe");
+			driver = new EdgeDriver();
+			
+			break;
+
+		default:
+			System.out.println("Please contact framework developers " + type);
+			break;
+		}
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		return driver;
+
+	}
+
+	
+	
+	
+	
+	
+	
 	public static WebElement getElement(String identifier, String value) {
 		WebElement ele = null;
 		System.out.println("---> Finding the element using " + identifier + " and " + value);
